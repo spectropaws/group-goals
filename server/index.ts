@@ -1,6 +1,13 @@
 import { Hono } from 'hono'
+import routes from './routes/routes'
+
+const port = process.env.PORT || 8000
 
 const app = new Hono()
-app.get('/', (c) => c.text('Hello Bun!'))
 
-export default app
+app.route("/", routes)
+
+export default {
+    fetch: app.fetch,
+    port: port
+}
